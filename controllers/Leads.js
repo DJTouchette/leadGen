@@ -1,14 +1,24 @@
 const mailer = require('../mailer/index');
 
+function objToString(obj) {
+  let newString = '';
+
+  for (let key in obj) {
+    newString += String(key) + ': ' + String(obj[key] + '\n');
+  }
+
+  return newString;
+};
+
 class LeadsController {
   constructor() {
 
   }
 
   emailAgent(req, res, next) {
-    const { name, phone, email, message, isRealtor } = req.body;
-    const info = JSON.stringify({ name, phone, email, message, isRealtor });
-    const optionObj = mailer.mailOptionsGen('New Lead', info);
+    const { name, phone, email, message, isRealtor, building } = req.body;
+    const info = objToString({ name, phone, email, message, isRealtor, building });
+    const optionObj = mailer.mailOptionsGen('New lead from ' + building, info);
 
     const mailPromise = mailer.sendEmail(optionObj);
 

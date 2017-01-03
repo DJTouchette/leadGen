@@ -2,13 +2,7 @@ const setupMailer = require('./config');
 const transporter = setupMailer();
 
 function sendEmail(mailOptions) {
-  // transporter.sendMail(mailOptions, function(err, info) {
-  //   if (err) return new Error('failed to send email');
-
-  //   console.log('Message sent ' + info.response);
-  //   return info.response;
-  // });
-  return new Promise(
+  const email = new Promise(
       (resolve, reject) => {
         transporter.sendMail(mailOptions, function(err, info) {
         if (err) return reject(new Error('failed to send email'));
@@ -18,14 +12,8 @@ function sendEmail(mailOptions) {
         });
       }   
     );
-  // transporter.sendMail(mailOptions, function(err, info) {
-  //   if (err) return reject(new Error('failed to send email'));
-
-  //   console.log('Message sent ' + info.response);
-  //   resolve(info.response);
-  // });
-
   
+  return email;
 }
 
 function mailOptionsGen(subject, text) {
