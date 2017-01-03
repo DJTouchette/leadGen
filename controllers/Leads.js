@@ -6,8 +6,8 @@ class LeadsController {
   }
 
   emailAgent(req, res, next) {
-    const { name, phone, email, message } = req.body;
-    const info = JSON.stringify({ name, phone, email, message });
+    const { name, phone, email, message, isRealtor } = req.body;
+    const info = JSON.stringify({ name, phone, email, message, isRealtor });
     const optionObj = mailer.mailOptionsGen('New Lead', info);
 
     const mailPromise = mailer.sendEmail(optionObj);
