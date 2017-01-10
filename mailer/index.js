@@ -19,7 +19,7 @@ function sendEmail(mailOptions) {
 function mailOptionsGen(subject, text) {
   return {
     from: '"LeadGen" <lead.gen.new.builds@gmail.com>', // sender address
-    to: 'djtouchette1993@gmail.com', // list of receivers
+    to: 'jessey@ipekian.ca', // list of receivers
     subject: subject, // Subject line
     text: text, // plaintext body
   };
